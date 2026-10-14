@@ -204,7 +204,7 @@ columns, tree-importance top-25). The goal is a <b>trustworthy</b> score, not th
      table(s2))}
 
 {sec("Stage 3 — Binary (Normal vs Attack)",
-     "Unlike GSC, Normal is not rare in AP (~20% of packets). Judged by 5-fold CV; the trivial "
+     "Normal is not rare in AP (~20% of packets). Judged by 5-fold CV; the trivial "
      "always-Attack baseline is shown for comparison.",
      table(s3),
      '<div class="note">Red flag: 1.000 even on the honest path. Every Normal packet has '

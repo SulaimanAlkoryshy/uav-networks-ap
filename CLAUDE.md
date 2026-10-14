@@ -1,17 +1,21 @@
 # CLAUDE.md — UAV Networks (AP / Case 2)
 
 ## What this is
-Graduation-project IDS on UAV-NIDD, **Access Point scenario only**. Same plan as the GSC repo
-(github.com/OS-78/uav-networks), adapted to AP. Read `docs/FINDINGS-AP.md` first.
+Graduation-project IDS on UAV-NIDD, **Access Point scenario only**, built in 6 stages.
+**Read `docs/STATE.md` first**, then `docs/PLAN.md`.
 
-## Rules (carried over from the GSC project)
+## How we work
 - **Basic student code**: simple functions, no frameworks, no clever abstractions.
 - **One file per stage** (`src/stageN_<name>.py`), each step under a banner
   `# ===== STEP n — <what it does> =====`.
 - Two paths everywhere: **report** (as the GP report says) vs **search** (honest, drops shortcuts).
+- **Two-opinion rule**: for every step, record what the report says AND an independent opinion
+  (research-based, allowed to disagree), the decision and the evidence, in `docs/STAGEn-DECISIONS.md`.
 - Fit everything on **train only**; fixed `SEED = 42`; judge by **macro-F1**, never accuracy alone.
-- Results shown in self-contained `results.html` (built by `src/make_report.py` from the CSVs).
-- Numbers go in the docs only from a real run, never guessed.
+- Numbers go in the docs only from a real run, never guessed. Log decisions in `docs/BUILD-LOG.md`
+  (append-only) and update `docs/STATE.md` at the end of a session.
+- Show the work: `results.html` (`src/make_report.py`), `student_review.docx/.pdf` (Arabic + English
+  ML terms, RTL — `src/make_student_review.py`), `REPORT.docx/.pdf` (`src/make_weekly_report.py`).
 
 ## AP-specific gotchas
 - Label column header is `Normal` → renamed `Class`; `Ewil Twin` → `Evil Twin`.
@@ -23,10 +27,11 @@ Graduation-project IDS on UAV-NIDD, **Access Point scenario only**. Same plan as
 
 ## Compute safety
 - Never `n_jobs=-1` on `permutation_importance` or anything that copies a big model; `n_jobs=1`.
-- Data lives in `data/` (gitignored).
+- Data lives in `data/` (gitignored, ~1.3 GB).
 
 ## Commands
 ```bash
-python src/convert_ap_xlsx_to_csv.py   # once
-python src/run_all.py                  # everything + results.html
+python src/convert_ap_xlsx_to_csv.py                              # once
+python src/run_all.py                                             # everything + results.html + docs
+powershell -File src/docx_to_pdf.ps1 student_review.docx REPORT.docx   # PDFs
 ```

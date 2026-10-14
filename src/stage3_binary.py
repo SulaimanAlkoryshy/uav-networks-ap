@@ -4,7 +4,7 @@ Stage 3 — binary modeling (AP): Normal vs Attack, for BOTH paths.
 Model: Random Forest (the report's primary model).
 Balancing: under_smote (our Stage-2 choice), fit on train only / inside each CV fold.
 
-Difference from GSC: in AP, "Normal" is NOT rare (~129k rows, ~20%). So the binary task is
+Note: in AP, "Normal" is NOT rare (~129k rows, ~20%). So the binary task is
 much less imbalanced (about 4 Attack : 1 Normal). Undersampling brings both sides to the cap;
 SMOTE has nothing to do here (no class is below the floor).
 

@@ -14,7 +14,7 @@ For Stage 1 the two paths differ in TWO places (everything else is identical):
     train/test split      SAME stratified 80/20 in both  <- kept identical for a fair comparison
     PCC |corr|>0.85       SAME in both
 
-Why AP is different from GSC (see docs/DATASET-AP.md):
+What is special about the AP file (see docs/DATASET-AP.md):
   - AP is PACKET-level Wi-Fi data (radiotap / wlan / ip fields), not flow statistics.
   - The label column has no proper header: it is called "Normal". We rename it to "Class".
   - The column headers do not match their contents (shifted), and some cells hold IP addresses,

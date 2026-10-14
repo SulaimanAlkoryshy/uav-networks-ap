@@ -3,6 +3,8 @@ Stage 6.1 — one command reproduces every AP number (NFR-5).
 
 Runs the whole pipeline in order, with the fixed seed baked into each script:
     stage1 -> stage2 -> stage3 -> stage4 -> stage5 -> stage6 -> make_report
+    -> make_student_review -> make_weekly_report
+(PDFs: powershell -File src/docx_to_pdf.ps1 student_review.docx REPORT.docx)
 
 Run:
     python src/run_all.py
@@ -23,6 +25,8 @@ STEPS = [
     ("Stage 5  model benchmark", "src/stage5_benchmark.py"),
     ("Stage 6  importance + cost + reproducibility", "src/stage6_analysis.py"),
     ("Report   build results.html", "src/make_report.py"),
+    ("Docs     build student_review.docx (Arabic)", "src/make_student_review.py"),
+    ("Docs     build REPORT.docx", "src/make_weekly_report.py"),
 ]
 
 

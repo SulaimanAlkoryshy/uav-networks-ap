@@ -3,7 +3,7 @@
 All numbers below come from real runs (`python src/run_all.py`, SEED = 42). The raw tables are
 in `data/processed/stage*.csv`; the visual version is `results.html`.
 
-Two paths, as in the GSC project:
+Two paths through every stage:
 - **report** = the GP report as written (keep every column, ANOVA top-25).
 - **search** = honest version (drop 4 time/order + 4 IP columns, RF-importance top-25).
 
@@ -23,9 +23,9 @@ Two paths, as in the GSC project:
 | report | 0.9586 | **0.9691** | 0.9595 |
 | search | **0.8860** | 0.8853 | 0.8834 |
 
-- The report's claimed **+0.18** from balancing does **not** reproduce (changes ≤ 0.01), same as GSC.
+- The report's claimed **+0.18** from balancing does **not** reproduce (changes ≤ 0.01).
 - Balancing helps DDoS recall (search 0.43 → 0.51) but costs a little elsewhere.
-- **Choice:** keep `under_smote` (report's method, same as GSC project → comparable). Honest note:
+- **Choice:** keep `under_smote` (the report's method). Honest note:
   on the search path it is a tie with no balancing.
 
 ## Stage 3 — Binary (Normal vs Attack)
@@ -51,8 +51,8 @@ Reconnaissance*; good: De-authentication 0.92, Evil Twin 0.85; **weak: MITM 0.72
 DDoS 0.55**.
 \*Reconnaissance = 1.000 on only **32** training rows — not reliable.
 - report path reaches 1.000 on MITM / Replay / Evil Twin only because it keeps the timestamp.
-- Interesting contrast with GSC: De-authentication is **easy here (0.92)** but ≈0 in GSC — makes
-  sense, de-auth is an 802.11 management-frame attack, visible in packet fields, invisible in flows.
+- De-authentication is **easy here (0.92)**: it is an 802.11 management-frame attack, so it is
+  visible directly in packet-level fields like the ones AP has.
 
 ## Stage 5 — Model benchmark (test macro-F1)
 | model | report | search |
@@ -63,7 +63,7 @@ DDoS 0.55**.
 | LogisticRegression | 0.9092 | 0.6828 |
 | LinearSVM | 0.9059 | 0.6801 |
 
-- Tree models >> linear models (same as GSC).
+- Tree models >> linear models.
 - On the honest path **XGBoost is best (0.898)**, RF close (0.885). The **≥ 0.90 target is just
   missed honestly**; it is met by every tree model on the report path — but via time leakage.
 

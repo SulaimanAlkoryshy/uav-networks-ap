@@ -1,6 +1,6 @@
 # REPORT-NOTES — the GP report, distilled for coding
 
-**Source:** `Graduation project 1.pdf` — *"Towards Robust Cyber Threat Detection in UAV
+**Source:** the GP1 report (PDF, not stored in this repo) — *"Towards Robust Cyber Threat Detection in UAV
 Networks: A Data-Driven Classification Framework"* (King Saud University, May 2026).
 This file holds everything we need to write code **without re-reading the 39-page PDF**.
 When something here is not enough, open the PDF at the page noted in `()`.
@@ -31,7 +31,7 @@ Real-world UAV testbed capture (IEEE TNSE 2025, ref [1]). **Not simulated.**
   | Case 2 — UAV-to-AP    | an access point intercepts traffic        | 51 | `Access Point Case2 Label.xlsx` | u2a |
   | Case 3 — UAV-to-GCS   | the ground station is fully taken over    | 85 | `GSC Case3 Label .csv`          | u2g |
 
-  (Case 2 is **.xlsx** → needs `openpyxl`, not `read_csv`. Case 3 filename has a typo + trailing space.)
+  **This project uses Case 2 (AP) only.** It is an **.xlsx** file → converted once to CSV.
 
 - **10 attacks + Normal** (p23, 27): Scanning, Reconnaissance, DoS, DDoS,
   GPS Jamming & Spoofing, MITM, Replay, Evil Twin, Brute-Force, Fake Landing Packet.
@@ -94,8 +94,7 @@ NFR-6 generalises across 3 scenarios · NFR-7 extensible to new data/features.
 Testbed: **PX4 Vision Dev Kit V1.5** (hub/AP) + **DJI Mavic Air** + **DJI Mini 3 Pro**, 5GHz
 802.11n ad-hoc mesh. Protocols: **MAVLink, DJI SDK, UDP, HTTP, SFTP, Telnet**. Attacker:
 Kali 2023.1 with Aircrack-ng, Nmap, Metasploit, Bettercap, DroneSploit, Hping3.
-Authors: Osama Aldhayan + team; supervisor Dr. Mustafa Qamhan.
 
 ---
-*Page numbers refer to `Graduation project 1.pdf`. Update this file if we learn the real column
-names / exact label values when we first open the CSVs in Stage 1.*
+*Page numbers refer to the GP1 report PDF. The real AP column names and label values are in
+`DATASET-AP.md`.*

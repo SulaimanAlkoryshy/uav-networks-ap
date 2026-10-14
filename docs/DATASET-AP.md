@@ -11,16 +11,16 @@ compromised point** of the network (it intercepts the traffic).
 - Converted once to `data/processed/ap_raw.csv` by `src/convert_ap_xlsx_to_csv.py`
   → **631,356 rows × 51 columns** (50 features + label).
 
-## How AP differs from GSC (Case 3)
-| | GSC (Case 3) | AP (Case 2) |
-|---|---|---|
-| level | **flow** statistics (per connection) | **packet** fields (radiotap / 802.11 / IP / UDP / HTTP) |
-| rows | 823,632 | 631,356 |
-| features | 85 | 50 |
-| label column | `Class` | **`Normal`** (header lost) → renamed `Class` |
-| normal class | `Benign`, 109 rows (very rare) | `Normal`, 129,541 rows (~20%) |
-| rarest class | Benign 109 | **Reconnaissance 40** |
-| classes | 9 attacks + Benign (no Replay) | **10 attacks + Normal** (adds Replay) |
+## AP at a glance
+| | AP (Case 2) |
+|---|---|
+| level | **packet** fields (radiotap / 802.11 / IP / UDP / HTTP), like the AWID Wi-Fi datasets |
+| rows | 631,356 |
+| features | 50 |
+| label column | **`Normal`** (header lost) → renamed `Class` |
+| normal class | `Normal`, 129,541 rows (~20%) — not rare |
+| rarest class | **Reconnaissance, 40 rows** |
+| classes | **10 attacks + Normal** |
 
 ## Data-quality problems found (and what we do)
 1. **Label header is broken** — the label column is called `Normal`. Renamed to `Class`.
@@ -34,7 +34,7 @@ compromised point** of the network (it intercepts the traffic).
    So column names are not trustworthy; we judge columns by their contents.
 4. **Mixed text in numeric columns** — hex (`0x0000`) is parsed to a number; other text (IPs,
    host names, raw payload hex) becomes **-1**.
-   *Why not drop those rows like GSC?* Because it would delete **100%** of Evil Twin, MITM,
+   *Why not just drop those rows?* Because it would delete **100%** of Evil Twin, MITM,
    Reconnaissance and Replay (and 67% of DoS). Measured, not assumed.
 5. **One constant column** — `wlan.fc.protected` → dropped.
 6. **117 duplicate rows** — kept (tiny; packet captures repeat legitimately).
@@ -67,8 +67,7 @@ A decision tree using **one column only** (`stage1_shortcut_check.csv`):
 | `radiotap.rxflags` (radio clock) | 0.344 |
 | `frame.number` (packet index) | 0.279 |
 
-Each attack was captured in its own session, so **the time says which attack it is**. This is the
-AP version of GSC's IP leakage. PATH search drops these 4 + the 4 `ip.*` columns.
+Each attack was captured in its own session, so **the time says which attack it is**. PATH search drops these 4 + the 4 `ip.*` columns.
 PATH report's ANOVA selected **7 of the 8** (the 8th was removed by PCC as a near-copy).
 
 ### 2) Normal was captured differently (cannot be removed by dropping a column)
