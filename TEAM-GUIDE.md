@@ -41,8 +41,9 @@ python -m venv .venv
 pip install -r requirements.txt
 ```
 
-**٦. الداتا:** نزّل `UAV-NDD CSV.zip` من Zenodo (record 15125851)، وحط الملف `Access Point Case2 Label.xlsx` داخل `data/raw/`. بعدها شغّل هذا الأمر مرة وحدة:
+**٦. الداتا** (مرة وحدة): الأمر الأول ينزّل الداتا من Zenodo، والثاني يحوّلها لـ CSV:
 ```bash
+python src/download_data.py
 python src/convert_ap_xlsx_to_csv.py
 ```
 

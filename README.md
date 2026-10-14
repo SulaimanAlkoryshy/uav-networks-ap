@@ -35,10 +35,10 @@ pip install -r requirements.txt
 Team workflow (Git, branches, PRs) in Arabic: [`TEAM-GUIDE.md`](TEAM-GUIDE.md).
 
 ## The dataset
-Download `UAV-NDD CSV.zip` from **Zenodo record 15125851** (https://zenodo.org/records/15125851),
-unzip it, and put `Access Point Case2 Label.xlsx` in `data/raw/`. Then run this once:
+Download it and keep only the Access Point file (once):
 ```bash
-python src/convert_ap_xlsx_to_csv.py
+python src/download_data.py          # Zenodo 15125851 → data/raw/Access Point Case2 Label.xlsx
+python src/convert_ap_xlsx_to_csv.py # Excel → data/processed/ap_raw.csv
 ```
 
 ## Run
@@ -49,6 +49,7 @@ You can also run a single stage, e.g. `python src/stage4_multiclass.py`.
 
 | file | what it does |
 |---|---|
+| `src/download_data.py` | download the zip from Zenodo, take the AP file (once) |
 | `src/convert_ap_xlsx_to_csv.py` | Excel → `data/processed/ap_raw.csv` (once) |
 | `src/stage1_preprocess.py` | clean, shortcut check, split, PCC, top-25 (two paths) |
 | `src/stage2_balance.py` | none vs under+Borderline-SMOTE vs class_weight |
