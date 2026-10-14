@@ -1,0 +1,16 @@
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+node_modules/
+.env
+*.log
+.DS_Store
+*.egg-info/
+build/
+dist/
+data/
+UAV-NDD CSV.zip
+*.zip
+.~lock.*#
+.pytest_cache/

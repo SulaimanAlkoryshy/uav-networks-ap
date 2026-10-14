@@ -1,0 +1,8 @@
+# Core classical-ML stack (CPU-only).
+numpy>=1.26
+pandas>=2.0
+scikit-learn>=1.4
+imbalanced-learn>=0.12
+python-calamine>=0.2   # stream the AP .xlsx into a CSV once (src/convert_ap_xlsx_to_csv.py)
+xgboost>=2.0           # Stage 5 benchmarking model (FR-5)
+matplotlib>=3.8        # results.html charts + confusion matrices
