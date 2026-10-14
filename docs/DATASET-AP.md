@@ -56,7 +56,7 @@ compromised point** of the network (it intercepts the traffic).
 
 Imbalance ≈ **4,300 : 1** (Brute-Force vs Reconnaissance).
 
-## ⚠ Leakage found in AP (the important part)
+## Leakage found in AP (the important part)
 ### 1) Time / order columns (removed in PATH search)
 A decision tree using **one column only** (`stage1_shortcut_check.csv`):
 
